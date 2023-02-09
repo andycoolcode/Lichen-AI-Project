@@ -3,21 +3,20 @@
 import numpy as np
 import cv2
 
-img_path = input("What is the image path?")
-
+# img_path = input("What is the image path?")
+img_path = "TestImg2.png"
 cap =  cv2.imread(img_path)
 cap_HSV = cv2.cvtColor(cap, cv2.COLOR_BGR2HSV)
 cap_threshold = cv2.inRange(cap_HSV, (48, 5, 93), (89, 68,255))
 
 newimg = cap_threshold
 number_of_white_pix = np.sum(newimg != 0)
-number_of_black_pix = np.sum(newimg == 0)
-number_of_total_pix = np.sum([number_of_black_pix,number_of_white_pix])
+number_of_total_pix = cap.shape[0] * cap.shape[1]
+print(number_of_total_pix)
 print("The number of pixels (shown in white) that fit this parameter is:",
             number_of_white_pix)
-print(number_of_black_pix)
 print(number_of_total_pix)
-desired_proportion = number_of_white_pix / number_of_total_pix
+desired_proportion = 100 * (number_of_white_pix / number_of_total_pix)
 print(desired_proportion)
 
 

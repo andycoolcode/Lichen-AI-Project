@@ -62,19 +62,19 @@ def on_high_V_thresh_trackbar(val):
 # parser = argparse.ArgumentParser(description='Code for Thresholding Operations using inRange tutorial.')
 # parser.add_argument('--camera', help='Camera divide number.', default=0, type=int)
 # args = parser.parse_args()
-cap =  cv.imread("Diverse_Img.jpeg")
+cap =  cv.imread("Data\Diverse_Img.JPEG")
 
 cv.namedWindow(window_capture_name, cv.WINDOW_KEEPRATIO)
 cv.resizeWindow(window_capture_name, 400, 400)
 cv.namedWindow(window_detection_name, cv.WINDOW_KEEPRATIO)
 cv.resizeWindow(window_detection_name, 300, 300)
 
-cv.createTrackbar(low_H_name, window_detection_name , low_H, max_value_H, on_low_H_thresh_trackbar)
-cv.createTrackbar(high_H_name, window_detection_name , high_H, max_value_H, on_high_H_thresh_trackbar)
-cv.createTrackbar(low_S_name, window_detection_name , low_S, max_value, on_low_S_thresh_trackbar)
-cv.createTrackbar(high_S_name, window_detection_name , high_S, max_value, on_high_S_thresh_trackbar)
-cv.createTrackbar(low_V_name, window_detection_name , low_V, max_value, on_low_V_thresh_trackbar)
-cv.createTrackbar(high_V_name, window_detection_name , high_V, max_value, on_high_V_thresh_trackbar)
+cv.createTrackbar(low_H_name, window_detection_name , 48, max_value_H, on_low_H_thresh_trackbar)
+cv.createTrackbar(high_H_name, window_detection_name , 89, max_value_H, on_high_H_thresh_trackbar)
+cv.createTrackbar(low_S_name, window_detection_name , 5, max_value, on_low_S_thresh_trackbar)
+cv.createTrackbar(high_S_name, window_detection_name , 68, max_value, on_high_S_thresh_trackbar)
+cv.createTrackbar(low_V_name, window_detection_name , 93, max_value, on_low_V_thresh_trackbar)
+cv.createTrackbar(high_V_name, window_detection_name , 255, max_value, on_high_V_thresh_trackbar)
 while True:
     
     cap
@@ -91,6 +91,15 @@ while True:
     if key == ord('s'):
         newimg = cap_threshold
         number_of_white_pix = np.sum(newimg != 0)
+        number_of_total_pix = cap.shape[0] * cap.shape[1]
+        print(number_of_total_pix)
+        # print("The number of pixels (shown in white) that fit this parameter is:",
+                    # number_of_white_pix)
+        print(number_of_total_pix)
+        desired_proportion = 100 * (number_of_white_pix / number_of_total_pix)
+        print(desired_proportion)
+
+
 
         print("The parameters are:")
         print("(Low H, high H) = (", low_H, ",", high_H, ")" )
