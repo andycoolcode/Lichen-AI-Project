@@ -62,19 +62,20 @@ def on_high_V_thresh_trackbar(val):
 # parser = argparse.ArgumentParser(description='Code for Thresholding Operations using inRange tutorial.')
 # parser.add_argument('--camera', help='Camera divide number.', default=0, type=int)
 # args = parser.parse_args()
-cap =  cv.imread("Data\Diverse_Img.JPEG")
+img_path = input("Image path?")
+cap =  cv.imread(img_path)
 
 cv.namedWindow(window_capture_name, cv.WINDOW_KEEPRATIO)
 cv.resizeWindow(window_capture_name, 400, 400)
 cv.namedWindow(window_detection_name, cv.WINDOW_KEEPRATIO)
 cv.resizeWindow(window_detection_name, 300, 300)
 
-cv.createTrackbar(low_H_name, window_detection_name , 48, max_value_H, on_low_H_thresh_trackbar)
-cv.createTrackbar(high_H_name, window_detection_name , 89, max_value_H, on_high_H_thresh_trackbar)
-cv.createTrackbar(low_S_name, window_detection_name , 5, max_value, on_low_S_thresh_trackbar)
-cv.createTrackbar(high_S_name, window_detection_name , 68, max_value, on_high_S_thresh_trackbar)
-cv.createTrackbar(low_V_name, window_detection_name , 93, max_value, on_low_V_thresh_trackbar)
-cv.createTrackbar(high_V_name, window_detection_name , 255, max_value, on_high_V_thresh_trackbar)
+cv.createTrackbar(low_H_name, window_detection_name , 0, max_value_H, on_low_H_thresh_trackbar)
+cv.createTrackbar(high_H_name, window_detection_name , 70, max_value_H, on_high_H_thresh_trackbar)
+cv.createTrackbar(low_S_name, window_detection_name , 0, max_value, on_low_S_thresh_trackbar)
+cv.createTrackbar(high_S_name, window_detection_name , 87, max_value, on_high_S_thresh_trackbar)
+cv.createTrackbar(low_V_name, window_detection_name , 0, max_value, on_low_V_thresh_trackbar)
+cv.createTrackbar(high_V_name, window_detection_name , 102, max_value, on_high_V_thresh_trackbar)
 while True:
     
     cap
